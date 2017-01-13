@@ -1,0 +1,4 @@
+Application name	weplay
+API key	ba4a6e1040f17e4171ae5c213eb669d6
+Shared secret	635f4562d0883ee9f20ed081a960ff01
+Registered to	tharindudr
