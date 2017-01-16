@@ -56,6 +56,9 @@ max-height: 100%;
     background-color: #428bca;
 }
 
+.languages {
+  font-size: 36px;
+}
 
 .main {
     padding: 20px;

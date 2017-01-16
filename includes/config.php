@@ -14,7 +14,7 @@ if (mysqli_connect_errno()) {
 }
 
 //Disk Containing Movies
-define("SONG_PATH",'E:'.DIRECTORY_SEPARATOR.'TDr'.DIRECTORY_SEPARATOR.'Music');
+define("DRIVE_PATH",'E:'.DIRECTORY_SEPARATOR.'TDr'.DIRECTORY_SEPARATOR.'Music');
 //define("MV_PATH",'E:'.DIRECTORY_SEPARATOR.'Movies');
 define("WEB_URL",'http://www.songdb.lk');
 define("LASTFM_API", 'ba4a6e1040f17e4171ae5c213eb669d6');
