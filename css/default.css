@@ -55,9 +55,12 @@ max-height: 100%;
     color: #fff;
     background-color: #428bca;
 }
-
 .languages {
   font-size: 36px;
+}
+.tab-pane {
+  padding-top: 15px;
+  border-left: 1px solid #ddd;
 }
 
 .main {

@@ -1,3 +1,4 @@
+<?php require_once ('includes/functions.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,8 +58,38 @@
         </div>
         <div class="col-sm-9 col-md-10 main">
             <h1 class="page-header">Main Folders</h1>
+            <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <?php
+                $panels = "";
+                $directories = glob(DRIVE_PATH . '\*' , GLOB_ONLYDIR);
+                foreach ($directories as $dir) {
+                  $sub_folders = "";
+                  $song_folder = str_replace (DRIVE_PATH.'\\','',$dir);
+                  echo "<li role='presentation'>
+                  <a href='#$song_folder' aria-controls='$song_folder' role='tab' data-toggle='tab'>
+                      <span class='icon-folder' aria-hidden='true'></span>
+                      $song_folder
+                  </a></li>";
 
-            <?php include("ajax-folders.php"); ?>
+                  $sub_directories = glob($dir."\*", GLOB_ONLYDIR);
+                  foreach ($sub_directories as $sub_dir) {
+                    $sub_song_folder = str_replace ($dir.'\\','',$sub_dir);
+                    $sub_folders .= "<li class='list-group-item'><span class='icon-folder' aria-hidden='true'></span> $sub_song_folder</li>";
+                  }
+                  $panels .= "<div role='tabpanel' class='tab-pane' id='$song_folder'>
+                  <ul class='list-group'>
+                  $sub_folders
+                  </ul>
+                  </div>";
+                }
+                ?>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <?php echo $panels; ?>
+              </div>
         </div>
     </div>
 </div>
@@ -67,5 +98,27 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+//get folders
+$('body').on("click", ".languages", function () {
+    var pagerequest = $(this).attr('href');
+
+    var request = $.ajax({
+        url: pagerequest,
+        method: "POST",
+        dataType: "html"
+    });
+
+    request.done(function (msg) {
+        $(".modal-body").html(msg);
+        $('#movieInfo').modal('show');
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Request failed: " + textStatus);
+    });
+    return false;
+});
+</script>
 </body>
 </html>
